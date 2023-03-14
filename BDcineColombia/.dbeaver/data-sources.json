@@ -1,0 +1,79 @@
+{
+	"folders": {},
+	"connections": {
+		"oracle_thin-186dd8873aa-599f9255a319bf3e": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "oracle xe/SYSTEM",
+			"save-password": true,
+			"configuration": {
+				"host": "localhost",
+				"port": "1521",
+				"database": "xe",
+				"url": "jdbc:oracle:thin:@//localhost:1521/xe",
+				"configurationType": "MANUAL",
+				"home": "C:\\Users\\Acer\\AppData\\Local\\Temp\\deinstall2022-08-11_08-19-15PM",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native"
+			}
+		},
+		"oracle_thin-186dd8c2086-7ae13ee2ac7dbfd9": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "oracle xe/SYS",
+			"save-password": true,
+			"configuration": {
+				"host": "localhost",
+				"port": "1521",
+				"database": "XE",
+				"url": "jdbc:oracle:thin:@//localhost:1521/XE",
+				"configurationType": "MANUAL",
+				"home": "C:\\Users\\Acer\\AppData\\Local\\Temp\\deinstall2022-08-11_08-19-15PM",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native",
+				"auth-properties": {
+					"oracle.logon-as": "sysdba"
+				}
+			}
+		},
+		"oracle_thin-186dd986450-1059db34f7d3badc": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "oracle xe/CINE",
+			"save-password": true,
+			"configuration": {
+				"host": "localhost",
+				"port": "1521",
+				"database": "xe",
+				"url": "jdbc:oracle:thin:@//localhost:1521/xe",
+				"configurationType": "MANUAL",
+				"home": "C:\\Users\\Acer\\AppData\\Local\\Temp\\deinstall2022-08-11_08-19-15PM",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native"
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}
