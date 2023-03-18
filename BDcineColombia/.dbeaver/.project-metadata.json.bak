@@ -1,1 +1,1 @@
-{"resources":{"Scripts/Oracle_user.sql":{"default-datasource":"oracle_thin-186dd8c2086-7ae13ee2ac7dbfd9","default-schema":"SYS"}}}
+{"resources":{"Scripts/Script.sql":{"default-datasource":"postgres-jdbc-186ddc9ed0c-6776c38538d3796d","default-catalog":"cine","default-schema":"public"},"Scripts/cineColombiaV3postgres.sql":{"default-datasource":"postgres-jdbc-186ddc9ed0c-6776c38538d3796d","default-catalog":"cine","default-schema":"public"},"Scripts/crear_bd_v1.0.sql":{"default-datasource":"oracle_thin-186dd986450-1059db34f7d3badc","default-schema":"C##CINE"}}}
