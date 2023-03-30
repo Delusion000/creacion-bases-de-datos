@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 9.x                               */
-/* Created on:     17/03/2023 10:29:21 p. m.                    */
+/* Created on:     29/03/2023 05:23:50 p. m.                    */
 /*==============================================================*/
 
 
@@ -14,9 +14,39 @@ DROP TABLE CIUDAD;
 
 DROP TABLE CLIENTE;
 
+DROP TABLE CLIENTE_DIRECCIONES;
 
+DROP TABLE CONSUMIBLES;
 
+DROP TABLE CONSUMIBLES_COSTOS;
 
+DROP TABLE COSTOS;
+
+DROP TABLE DEPARTAMENTO;
+
+DROP TABLE DISTRIBUCION;
+
+DROP TABLE EMAIL_CLIENTES;
+
+DROP TABLE GENERO;
+
+DROP TABLE PAIS;
+
+DROP TABLE PELICULA;
+
+DROP TABLE SALA;
+
+DROP TABLE TEATRO;
+
+DROP TABLE TEATRO_SALAS;
+
+DROP TABLE TELEFONO_CLIENTE;
+
+DROP TABLE TIPO_DE_DOCUMENTO;
+
+DROP TABLE TIPO_DE_PAGO;
+
+DROP TABLE TIPO_SALA;
 
 /*==============================================================*/
 /* Table: ASIENTO                                               */
@@ -69,6 +99,9 @@ CREATE TABLE CLIENTE (
    NOMBRE_CLIENTE       VARCHAR(40)          NULL,
    CORREO               VARCHAR(40)          NULL,
    N_IDENTIDAD          VARCHAR(20)          NULL,
+   FECHA_DE_NACIMIENTO_ TIMESTAMP WITH TIME ZONE NULL,
+   ESTADO               VARCHAR(1)           NULL,
+   FECHA_VINCULACION_   TIMESTAMP WITH TIME ZONE NULL,
    CONSTRAINT PK_CLIENTE PRIMARY KEY (ID_CLIENTE)
 );
 
@@ -76,7 +109,7 @@ CREATE TABLE CLIENTE (
 /* Table: CLIENTE_DIRECCIONES                                   */
 /*==============================================================*/
 CREATE TABLE CLIENTE_DIRECCIONES (
-   ID_CLIENTE_DIRECCION VARCHAR(15)           NOT NULL,
+   ID_CLIENTE_DIRECCION NUMERIC(50)          NOT NULL,
    ID_CIUDAD            VARCHAR(3)           NOT NULL,
    ID_CLIENTE           VARCHAR(3)           NULL,
    VIA_PRINCIPAL        VARCHAR(20)          NOT NULL,
@@ -93,6 +126,14 @@ CREATE TABLE CONSUMIBLES (
    NOMBRE               VARCHAR(30)          NOT NULL,
    PRECIO               FLOAT                NOT NULL,
    CONSTRAINT PK_CONSUMIBLES PRIMARY KEY (ID_CONSUMIBLES)
+);
+
+/*==============================================================*/
+/* Table: CONSUMIBLES_COSTOS                                    */
+/*==============================================================*/
+CREATE TABLE CONSUMIBLES_COSTOS (
+   ID_CONSUMIBLES       VARCHAR(3)           NULL,
+   ID_COSTOS            VARCHAR(3)           NULL
 );
 
 /*==============================================================*/
@@ -128,6 +169,20 @@ CREATE TABLE DISTRIBUCION (
 );
 
 /*==============================================================*/
+/* Table: EMAIL_CLIENTES                                        */
+/*==============================================================*/
+CREATE TABLE EMAIL_CLIENTES (
+   ID_EMAIL_CLIENTES    NUMERIC(100)         NOT NULL,
+   ID_CLIENTE           VARCHAR(3)           NULL,
+   EMAIL                VARCHAR(100)         NULL,
+   ESTADO               VARCHAR(1)           NULL,
+   FECHA_REGISTRO       TIMESTAMP WITH LOCAL TIME ZONE NULL,
+   FECHA_ACTUALIZACION  TIMESTAMP WITH LOCAL TIME ZONE NULL,
+   ID_USUARIO_LOG       VARCHAR(15)          NULL,
+   CONSTRAINT PK_EMAIL_CLIENTES PRIMARY KEY (ID_EMAIL_CLIENTES)
+);
+
+/*==============================================================*/
 /* Table: GENERO                                                */
 /*==============================================================*/
 CREATE TABLE GENERO (
@@ -142,6 +197,7 @@ CREATE TABLE GENERO (
 CREATE TABLE PAIS (
    IS_PAIS              VARCHAR(2)           NOT NULL,
    NOMBRE               VARCHAR(20)          NULL,
+   CODIGO_TELEFONO      VARCHAR(20)          NOT NULL,
    CONSTRAINT PK_PAIS PRIMARY KEY (IS_PAIS)
 );
 
@@ -185,6 +241,17 @@ CREATE TABLE TEATRO_SALAS (
    ID_TEATRO            VARCHAR(3)           NULL,
    ID_SALA              VARCHAR(3)           NULL,
    CONSTRAINT PK_TEATRO_SALAS PRIMARY KEY (ID_T_S)
+);
+
+/*==============================================================*/
+/* Table: TELEFONO_CLIENTE                                      */
+/*==============================================================*/
+CREATE TABLE TELEFONO_CLIENTE (
+   ID_TELEFONO_CLIENTE  VARCHAR(10)          NOT NULL,
+   ID_CLIENTE           VARCHAR(3)           NULL,
+   IS_PAIS              VARCHAR(2)           NULL,
+   TELEFONO_            NUMERIC(30)          NULL,
+   CONSTRAINT PK_TELEFONO_CLIENTE PRIMARY KEY (ID_TELEFONO_CLIENTE)
 );
 
 /*==============================================================*/
@@ -260,6 +327,16 @@ ALTER TABLE CLIENTE_DIRECCIONES
       REFERENCES CIUDAD (ID_CIUDAD)
       ON DELETE RESTRICT ON UPDATE RESTRICT;
 
+ALTER TABLE CONSUMIBLES_COSTOS
+   ADD CONSTRAINT FK_CONSUMIB_REFERENCE_CONSUMIB FOREIGN KEY (ID_CONSUMIBLES)
+      REFERENCES CONSUMIBLES (ID_CONSUMIBLES)
+      ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE CONSUMIBLES_COSTOS
+   ADD CONSTRAINT FK_CONSUMIB_REFERENCE_COSTOS FOREIGN KEY (ID_COSTOS)
+      REFERENCES COSTOS (ID_COSTOS)
+      ON DELETE RESTRICT ON UPDATE RESTRICT;
+
 ALTER TABLE COSTOS
    ADD CONSTRAINT FK_COSTOS_REFERENCE_BOLETO FOREIGN KEY (ID_BOLETO)
       REFERENCES BOLETO (ID_BOLETO)
@@ -290,6 +367,11 @@ ALTER TABLE DISTRIBUCION
       REFERENCES SALA (ID_SALA)
       ON DELETE RESTRICT ON UPDATE RESTRICT;
 
+ALTER TABLE EMAIL_CLIENTES
+   ADD CONSTRAINT FK_EMAIL_CL_REFERENCE_CLIENTE FOREIGN KEY (ID_CLIENTE)
+      REFERENCES CLIENTE (ID_CLIENTE)
+      ON DELETE RESTRICT ON UPDATE RESTRICT;
+
 ALTER TABLE PELICULA
    ADD CONSTRAINT FK_PELICULA_REFERENCE_GENERO FOREIGN KEY (ID_GENERO)
       REFERENCES GENERO (ID_GENERO)
@@ -313,6 +395,16 @@ ALTER TABLE TEATRO_SALAS
 ALTER TABLE TEATRO_SALAS
    ADD CONSTRAINT FK_TEATRO_S_REFERENCE_SALA FOREIGN KEY (ID_SALA)
       REFERENCES SALA (ID_SALA)
+      ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE TELEFONO_CLIENTE
+   ADD CONSTRAINT FK_TELEFONO_REFERENCE_CLIENTE FOREIGN KEY (ID_CLIENTE)
+      REFERENCES CLIENTE (ID_CLIENTE)
+      ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+ALTER TABLE TELEFONO_CLIENTE
+   ADD CONSTRAINT FK_TELEFONO_REFERENCE_PAIS FOREIGN KEY (IS_PAIS)
+      REFERENCES PAIS (IS_PAIS)
       ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE TIPO_DE_DOCUMENTO
