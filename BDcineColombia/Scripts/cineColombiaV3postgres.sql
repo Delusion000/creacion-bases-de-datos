@@ -1,26 +1,12 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 9.x                               */
-/* Created on:     17/03/2023 10:29:21 p. m.                    */
+/* Created on:     13/03/2023 08:31:13 p. m.                    */
 /*==============================================================*/
-
-
-DROP TABLE ASIENTO;
-
-DROP TABLE BOLETO;
-
-DROP TABLE CARTELERA;
-
-DROP TABLE CIUDAD;
-
-DROP TABLE CLIENTE;
-
-
-
-
 
 /*==============================================================*/
 /* Table: ASIENTO                                               */
 /*==============================================================*/
+
 CREATE TABLE ASIENTO (
    ID_ASIENTO           VARCHAR(3)           NOT NULL,
    NUMERO_ASIENTO       VARCHAR(2)           NULL,
@@ -76,7 +62,7 @@ CREATE TABLE CLIENTE (
 /* Table: CLIENTE_DIRECCIONES                                   */
 /*==============================================================*/
 CREATE TABLE CLIENTE_DIRECCIONES (
-   ID_CLIENTE_DIRECCION VARCHAR(15)           NOT NULL,
+   ID_CLIENTE_DIRECCION NUM(15)           NOT NULL,
    ID_CIUDAD            VARCHAR(3)           NOT NULL,
    ID_CLIENTE           VARCHAR(3)           NULL,
    VIA_PRINCIPAL        VARCHAR(20)          NOT NULL,
