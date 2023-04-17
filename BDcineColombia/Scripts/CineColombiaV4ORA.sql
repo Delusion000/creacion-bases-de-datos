@@ -240,9 +240,9 @@ CREATE TABLE CARTELERA2 (
 /* Table: CIUDAD                                                */
 /*==============================================================*/
 CREATE TABLE CIUDAD (
-   ID_CIUDAD            VARCHAR(3)            NOT NULL,
-   ID_DEPTO             VARCHAR(2),
-   NOMBRE               VARCHAR(40),
+   ID_CIUDAD VARCHAR(5) NOT NULL,
+   ID_DEPTO VARCHAR(2),
+   NOMBRE VARCHAR(40),
    CONSTRAINT PK_CIUDAD PRIMARY KEY (ID_CIUDAD)
 );
 
@@ -250,7 +250,7 @@ CREATE TABLE CIUDAD (
 /* Table: CIUDAD2                                               */
 /*==============================================================*/
 CREATE TABLE CIUDAD2 (
-   ID_CIUDAD            VARCHAR(3)            NOT NULL,
+   ID_CIUDAD            VARCHAR(5)            NOT NULL,
    ID_DEPTO             VARCHAR(2),
    NOMBRE               VARCHAR(40),
    CONSTRAINT PK_CIUDAD2 PRIMARY KEY (ID_CIUDAD)
